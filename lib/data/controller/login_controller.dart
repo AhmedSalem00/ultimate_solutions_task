@@ -1,16 +1,26 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
+
+import 'package:dio/dio.dart'as dioPackage;
+import 'package:get/get.dart';
 import 'package:ultimate_solutions_task/data/model/delivary.dart';
 import 'package:ultimate_solutions_task/data/model/login.dart';
-import 'package:ultimate_solutions_task/data/model/status_types.dart';
 import 'package:ultimate_solutions_task/utils/constant.dart';
 
-class ApiService {
-  final Dio _dio = Dio();
+class LoginController extends GetxController
 
+    with StateMixin<List<DeliveryBills>> {
+
+  @override
+  void onInit() {
+    super.onInit();
+    getData();
+  }
+  final dioPackage.Dio _dio = dioPackage.Dio();
   DeliveryLogin delivaryLogin=  DeliveryLogin();
 
-  Future<DeliveryLogin> checkDeliveryLogin() async {
+
+  getData() async {
+    change([], status: RxStatus.loading());
     try {
       var data = json.encode({
         "Value": {
@@ -19,7 +29,7 @@ class ApiService {
           "P_PSSWRD": "1"
         }
       });
-      Response response = await _dio.post(
+      dioPackage.Response response = await _dio.post(
         '${AppConstants.BASE_URL}/CheckDeliveryLogin',
         data: data,
       );
@@ -33,16 +43,11 @@ class ApiService {
 
         return delivaryLogin;
       }
-      else {
-        throw DioError(
-          requestOptions: response.requestOptions,
-          response: response,
-        );
-      }
-    } catch (error) {
-      print('Error in API request: $error');
-      throw error;
+    }
+    on Exception catch (err) {
+      change([], status: RxStatus.error(err.toString()));
     }
   }
-
 }
+
+

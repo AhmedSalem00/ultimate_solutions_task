@@ -31,7 +31,7 @@ class CustomOrderListWidget extends StatelessWidget {
                       Column(
                         children: [
                           const Text('Status'),
-                          Text(lst[index].dLVRYSTATUSFLG ?? ''),
+                          Text(lst[index].dLVRYSTATUSFLG?? ''),
                         ],
                       ),
                       const VerticalDivider(
