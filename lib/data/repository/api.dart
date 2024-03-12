@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:ultimate_solutions_task/data/model/delivary.dart';
 import 'package:ultimate_solutions_task/data/model/login.dart';
 import 'package:ultimate_solutions_task/data/model/status_types.dart';
@@ -8,12 +7,11 @@ import 'package:ultimate_solutions_task/utils/constant.dart';
 
 class ApiService {
   final Dio _dio = Dio();
-  final String _baseUrl =
-      'http://mdev.yemensoft.net:8087/OnyxDeliveryService/Service.svc';
+
   List<DeliveryStatusTypes> delivary = [];
   List<DeliveryBills> delivaryBils = [];
   DeliveryLogin delivaryLogin=  DeliveryLogin();
-  final RxBool isLoading = RxBool(false);
+
   Future<List<DeliveryStatusTypes>> getDeliveryStatusTypes() async {
     try {
       var data = json.encode({
@@ -25,7 +23,7 @@ class ApiService {
         }
       });
       Response response = await _dio.post(
-        '$_baseUrl/GetDeliveryStatusTypes',
+        '${AppConstants.BASE_URL}/GetDeliveryStatusTypes',
         data: data,
       );
       if (response.statusCode == 200) {
@@ -49,43 +47,43 @@ class ApiService {
       throw error;
     }
   }
-  Future<List<DeliveryBills>> getDeliveryBillsItems(String? deliveryNo) async {
-    try {
-      var data = json.encode({
-        "Value": {
-          "P_DLVRY_NO": "1010",
-          "P_LANG_NO": "1",
-          "P_BILL_SRL": "",
-          "P_PRCSSD_FLG": ""
-        }
-      });
-      Response response = await _dio.post(
-        '$_baseUrl/GetDeliveryBillsItems',
-        data: data,
-      );
-      if (response.statusCode == 200) {
-        print(response.data);
-        var responseData = response.data['Data']['DeliveryBills'];
-        print(responseData.toString());
-
-        List<DeliveryBills> delivaryBils = [];
-        responseData.forEach((item) {
-          delivaryBils.add(DeliveryBills.fromJson(item));
-        });
-        print(delivaryBils.length);
-
-        return delivaryBils;
-      } else {
-        throw DioError(
-          requestOptions: response.requestOptions,
-          response: response,
-        );
-      }
-    } catch (error) {
-      print('Error in API request: $error');
-      throw error;
-    }
-  }
+  // Future<List<DeliveryBills>> getDeliveryBillsItems(String? deliveryNo) async {
+  //   try {
+  //     var data = json.encode({
+  //       "Value": {
+  //         "P_DLVRY_NO": "1010",
+  //         "P_LANG_NO": "1",
+  //         "P_BILL_SRL": "",
+  //         "P_PRCSSD_FLG": ""
+  //       }
+  //     });
+  //     Response response = await _dio.post(
+  //       '${AppConstants.BASE_URL}/GetDeliveryBillsItems',
+  //       data: data,
+  //     );
+  //     if (response.statusCode == 200) {
+  //       print(response.data);
+  //       var responseData = response.data['Data']['DeliveryBills'];
+  //       print(responseData.toString());
+  //
+  //       List<DeliveryBills> delivaryBils = [];
+  //       responseData.forEach((item) {
+  //         delivaryBils.add(DeliveryBills.fromJson(item));
+  //       });
+  //       print(delivaryBils.length);
+  //
+  //       return delivaryBils;
+  //     } else {
+  //       throw DioError(
+  //         requestOptions: response.requestOptions,
+  //         response: response,
+  //       );
+  //     }
+  //   } catch (error) {
+  //     print('Error in API request: $error');
+  //     throw error;
+  //   }
+  // }
   Future<DeliveryLogin> checkDeliveryLogin() async {
     try {
       var data = json.encode({

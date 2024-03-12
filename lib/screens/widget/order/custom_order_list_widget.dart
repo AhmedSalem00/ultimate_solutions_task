@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ultimate_solutions_task/data/model/delivary.dart';
 
 class CustomOrderListWidget extends StatelessWidget {
-   CustomOrderListWidget({Key? key}) : super(key: key);
+  final List<DeliveryBills> lst;
+   CustomOrderListWidget({Key? key, required this.lst}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return  Container(
-      height: MediaQuery.of(context).size.height, // or any fixed height
+      height: MediaQuery.of(context).size.height,
       child: ListView.separated(
-        itemCount: 3,
+        itemCount: lst.length,
         separatorBuilder: (BuildContext context, int index) {
           return const Divider(
             thickness: 1,
@@ -21,15 +23,15 @@ class CustomOrderListWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('#1569999'),
+                Text(lst[index].bILLNO ?? ''),
                 IntrinsicHeight(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
-                        children: const [
-                          Text('Status'),
-                          Text('Delivering'),
+                        children: [
+                          const Text('Status'),
+                          Text(lst[index].dLVRYSTATUSFLG ?? ''),
                         ],
                       ),
                       const VerticalDivider(
@@ -39,9 +41,9 @@ class CustomOrderListWidget extends StatelessWidget {
                         width: 20,
                       ),
                       Column(
-                        children: const [
+                        children:  [
                           Text('Total price'),
-                          Text('Price'),
+                          Text(lst[index].bILLAMT ?? '0'),
                         ],
                       ),
                       const VerticalDivider(thickness: 3,),
@@ -49,9 +51,9 @@ class CustomOrderListWidget extends StatelessWidget {
                         width: 20,
                       ),
                       Column(
-                        children: const [
+                        children:  [
                           Text('Date '),
-                          Text('1/1/2024'),
+                          Text(lst[index].bILLDATE ?? ''),
                         ],
                       ),
                       const VerticalDivider(width: 10),
