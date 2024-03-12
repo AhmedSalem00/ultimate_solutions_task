@@ -3,7 +3,7 @@ import 'package:ultimate_solutions_task/data/repository/api.dart';
 import 'package:ultimate_solutions_task/screens/presntaion/order/order_screen.dart';
 
 void main() {
-  ApiService().getDeliveryStatusTypes();
+  // ApiService().getDeliveryStatusTypes();
   // ApiService().getDeliveryBillsItems('');
   ApiService().checkDeliveryLogin();
   runApp(const MyApp());

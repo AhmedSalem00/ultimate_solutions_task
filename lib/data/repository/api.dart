@@ -12,41 +12,41 @@ class ApiService {
   List<DeliveryBills> delivaryBils = [];
   DeliveryLogin delivaryLogin=  DeliveryLogin();
 
-  Future<List<DeliveryStatusTypes>> getDeliveryStatusTypes() async {
-    try {
-      var data = json.encode({
-        "Value": {
-          "P_DLVRY_NO": "1010",
-          "P_LANG_NO": "1",
-          "P_BILL_SRL": "",
-          "P_PRCSSD_FLG": ""
-        }
-      });
-      Response response = await _dio.post(
-        '${AppConstants.BASE_URL}/GetDeliveryStatusTypes',
-        data: data,
-      );
-      if (response.statusCode == 200) {
-        print(response.data);
-        var responseData = response.data['Data']['DeliveryStatusTypes'];
-        print(responseData.toString());
-
-        responseData.forEach(
-            (item) => delivary.add(DeliveryStatusTypes.fromJson(item)));
-        print(delivary.length);
-
-        return delivary;
-      } else {
-        throw DioError(
-          requestOptions: response.requestOptions,
-          response: response,
-        );
-      }
-    } catch (error) {
-      print('Error in API request: $error');
-      throw error;
-    }
-  }
+  // Future<List<DeliveryStatusTypes>> getDeliveryStatusTypes() async {
+  //   try {
+  //     var data = json.encode({
+  //       "Value": {
+  //         "P_DLVRY_NO": "1010",
+  //         "P_LANG_NO": "1",
+  //         "P_BILL_SRL": "",
+  //         "P_PRCSSD_FLG": ""
+  //       }
+  //     });
+  //     Response response = await _dio.post(
+  //       '${AppConstants.BASE_URL}/GetDeliveryStatusTypes',
+  //       data: data,
+  //     );
+  //     if (response.statusCode == 200) {
+  //       print(response.data);
+  //       var responseData = response.data['Data']['DeliveryStatusTypes'];
+  //       print(responseData.toString());
+  //
+  //       responseData.forEach(
+  //           (item) => delivary.add(DeliveryStatusTypes.fromJson(item)));
+  //       print(delivary.length);
+  //
+  //       return delivary;
+  //     } else {
+  //       throw DioError(
+  //         requestOptions: response.requestOptions,
+  //         response: response,
+  //       );
+  //     }
+  //   } catch (error) {
+  //     print('Error in API request: $error');
+  //     throw error;
+  //   }
+  // }
   // Future<List<DeliveryBills>> getDeliveryBillsItems(String? deliveryNo) async {
   //   try {
   //     var data = json.encode({
