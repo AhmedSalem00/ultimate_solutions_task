@@ -15,11 +15,11 @@ class OrderScreen extends StatelessWidget {
         padding: const EdgeInsets.only(top: 50.0),
         child: SingleChildScrollView(
           child: Column(
-            children: const [
+            children:  [
                CustomAppBarOrderWidget(),
-              SizedBox(height: 20),
-              CustomSlideSwitch(),
-              SizedBox(height: 40),
+              const SizedBox(height: 20),
+              const CustomSlideSwitch(),
+              const SizedBox(height: 40),
 
             ],
           ),

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:ultimate_solutions_task/data/model/delivary.dart';
+import 'package:get/get.dart';
+import 'package:ultimate_solutions_task/data/controller/login_controller.dart';
+import 'package:ultimate_solutions_task/data/model/login.dart';
 
 class CustomAppBarOrderWidget extends StatelessWidget {
-   const CustomAppBarOrderWidget({super.key,  });
+  final LoginController loginController = Get.put(LoginController());
+
+  CustomAppBarOrderWidget({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
-    final List<DeliveryBills> lst;
 
     return Stack(children: [
       Container(
@@ -38,16 +44,14 @@ class CustomAppBarOrderWidget extends StatelessWidget {
       Positioned(
         top: 20,
         child: Column(
-          children:  const [
-            Text(
-           'Ahmed',
-              style: TextStyle(fontSize: 25, color: Colors.white),
+          children:  [
+            GetBuilder<LoginController>(
+              builder: (loginController ) =>Text(
+                loginController.delivaryLogin.deliveryName.toString().,
+                style: const TextStyle(fontSize: 20, color: Colors.white),
+              )
             ),
-            Text('Othman',
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white)),
+
           ],
         ),
       ),
