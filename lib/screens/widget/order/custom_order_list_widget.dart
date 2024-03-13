@@ -3,14 +3,21 @@ import 'package:ultimate_solutions_task/data/model/delivary.dart';
 
 class CustomOrderListWidget extends StatelessWidget {
   final List<DeliveryBills> lst;
-   CustomOrderListWidget({Key? key, required this.lst}) : super(key: key);
+  final String type;
+
+  CustomOrderListWidget({Key? key, required this.lst, required this.type})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    List<DeliveryBills> newLst =
+        lst.where((e) => e.dLVRYSTATUSFLG == '0').toList();
+    List<DeliveryBills> others =
+        lst.where((e) => e.dLVRYSTATUSFLG != '0').toList();
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: ListView.separated(
-        itemCount: lst.length,
+        itemCount: type == 'new' ? newLst.length : others.length,
         separatorBuilder: (BuildContext context, int index) {
           return const Divider(
             thickness: 1,
@@ -23,15 +30,28 @@ class CustomOrderListWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(lst[index].bILLNO ?? ''),
                 IntrinsicHeight(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          type == 'new'
+                              ? Text(newLst[index].bILLNO ?? '')
+                              : Text(others[index].bILLNO ?? ''),
                           const Text('Status'),
-                          Text(lst[index].dLVRYSTATUSFLG?? ''),
+                          type == 'new'
+                              ? Text(newLst[index].dLVRYSTATUSFLG == '0'
+                                  ? 'new'
+                                  : '')
+                              : Text(others[index].dLVRYSTATUSFLG == '1'
+                                  ? 'Delivered'
+                                  : others[index].dLVRYSTATUSFLG == '2'
+                                      ? 'Partial Return'
+                                      : others[index].dLVRYSTATUSFLG == '3'
+                                          ? 'Full Return'
+                                          : ''),
                         ],
                       ),
                       const VerticalDivider(
@@ -41,19 +61,29 @@ class CustomOrderListWidget extends StatelessWidget {
                         width: 20,
                       ),
                       Column(
-                        children:  [
+                        children: [
                           Text('Total price'),
-                          Text(lst[index].bILLAMT ?? '0'),
+                          type == 'new'
+                              ? Text(double.parse(newLst[index].bILLAMT ?? '0')
+                                  .round()
+                                  .toString())
+                              : Text(double.parse(others[index].bILLAMT ?? '0')
+                                  .round()
+                                  .toString())
                         ],
                       ),
-                      const VerticalDivider(thickness: 3,),
+                      const VerticalDivider(
+                        thickness: 3,
+                      ),
                       const SizedBox(
                         width: 20,
                       ),
                       Column(
-                        children:  [
-                          Text('Date '),
-                          Text(lst[index].bILLDATE ?? ''),
+                        children: [
+                          const Text('Date '),
+                          type == 'new'
+                              ? Text(newLst[index].bILLDATE ?? '')
+                              : Text(others[index].bILLDATE ?? ''),
                         ],
                       ),
                       const VerticalDivider(width: 10),
@@ -66,6 +96,5 @@ class CustomOrderListWidget extends StatelessWidget {
         },
       ),
     );
-
   }
 }

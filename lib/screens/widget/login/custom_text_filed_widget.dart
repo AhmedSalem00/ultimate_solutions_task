@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextFiled extends StatelessWidget {
   final String? hintText;
-  final String labelText;
+  final String? labelText;
   final IconButton? iconButton;
   final TextEditingController? textEditingController;
   final Function()? onTap;
@@ -12,7 +12,7 @@ class CustomTextFiled extends StatelessWidget {
     const CustomTextFiled(
       {super.key,
         this.hintText,
-        required this.labelText,
+         this.labelText,
         this.iconButton,
         this.textEditingController,
         this.onTap,
@@ -22,7 +22,7 @@ class CustomTextFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-
+      textAlign: TextAlign.center,
       obscureText:obscureText ,
       initialValue: initialValue,
       validator: validatorFun,
@@ -32,15 +32,10 @@ class CustomTextFiled extends StatelessWidget {
           hintText: hintText,
           filled: true,
           fillColor: const Color(0xFFF1F5FB),
-          // floatingLabelBehavior: FloatingLabelBehavior.always,
-          contentPadding:
-          const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-          label: Container(
-              padding: const EdgeInsets.symmetric(horizontal:100),
-              child: Text(labelText,textAlign: TextAlign.left,),),
           suffixIcon: iconButton,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide.none,
           )),
     );
   }
