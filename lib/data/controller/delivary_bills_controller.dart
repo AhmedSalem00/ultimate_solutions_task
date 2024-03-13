@@ -8,16 +8,15 @@ import 'package:ultimate_solutions_task/utils/constant.dart';
 class DelivaryBillsController extends GetxController
 
     with StateMixin<List<DeliveryBills>> {
-
+  final dioPackage.Dio _dio = dioPackage.Dio();
+  List<DeliveryBills> lst = [];
+  List<DeliveryBills> others = [];
   @override
   void onInit() {
     super.onInit();
     getData();
   }
-  final dioPackage.Dio _dio = dioPackage.Dio();
 
-  List<DeliveryBills> lst = [];
-  List<DeliveryBills> others = [];
   getData() async {
     change([], status: RxStatus.loading());
     try {
