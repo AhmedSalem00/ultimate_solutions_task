@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ultimate_solutions_task/data/controller/login_controller.dart';
-import 'package:ultimate_solutions_task/data/model/login.dart';
 
 class CustomAppBarOrderWidget extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
@@ -47,7 +46,7 @@ class CustomAppBarOrderWidget extends StatelessWidget {
           children:  [
             GetBuilder<LoginController>(
               builder: (loginController ) =>Text(
-                loginController.delivaryLogin.deliveryName.toString().,
+                loginController.delivaryLogin.deliveryName.toString(),
                 style: const TextStyle(fontSize: 20, color: Colors.white),
               )
             ),

@@ -107,7 +107,11 @@ class CustomOrderListWidget extends StatelessWidget {
                                   : Text(
                                       double.parse(others[index].bILLAMT ?? '0')
                                           .round()
-                                          .toString())
+                                          .toString(),
+                                  style: const TextStyle(
+                                  fontSize: 22,
+                                  color: Color(0xFF004F62)),
+                              )
                             ],
                           ),
                         ),
@@ -127,7 +131,9 @@ class CustomOrderListWidget extends StatelessWidget {
                                           fontSize: 22,
                                           color: Color(0xFF004F62)),
                                     )
-                                  : Text(others[index].bILLDATE ?? ''),
+                                  : Text(others[index].bILLDATE ?? '',  style: const TextStyle(
+                                  fontSize: 22,
+                                  color: Color(0xFF004F62)),),
                             ],
                           ),
                         ),
