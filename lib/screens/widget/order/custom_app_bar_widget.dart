@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ultimate_solutions_task/data/model/delivary.dart';
 
 class CustomAppBarOrderWidget extends StatelessWidget {
-  const CustomAppBarOrderWidget({super.key});
-
+   const CustomAppBarOrderWidget({super.key,  });
   @override
   Widget build(BuildContext context) {
+    final List<DeliveryBills> lst;
+
     return Stack(children: [
       Container(
         height: 120,
@@ -36,9 +38,9 @@ class CustomAppBarOrderWidget extends StatelessWidget {
       Positioned(
         top: 20,
         child: Column(
-          children: const [
+          children:  const [
             Text(
-              'Ahmed',
+           'Ahmed',
               style: TextStyle(fontSize: 25, color: Colors.white),
             ),
             Text('Othman',

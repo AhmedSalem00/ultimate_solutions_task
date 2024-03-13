@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             const CustomAppBarLogin(),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             Padding(
               padding: const EdgeInsets.only(top: 50.0, left: 8, right: 8),
               child: Column(children: [

@@ -5,7 +5,7 @@ import 'package:ultimate_solutions_task/data/controller/delivary_bills_controlle
 import 'package:ultimate_solutions_task/screens/widget/order/custom_order_list_widget.dart';
 
 class CustomSlideSwitch extends StatefulWidget {
-  CustomSlideSwitch({super.key});
+  const CustomSlideSwitch({super.key});
 
   @override
   State<CustomSlideSwitch> createState() => _CustomSlideSwitchState();

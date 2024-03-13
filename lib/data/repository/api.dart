@@ -1,15 +1,12 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:ultimate_solutions_task/data/model/delivary.dart';
 import 'package:ultimate_solutions_task/data/model/login.dart';
-import 'package:ultimate_solutions_task/data/model/status_types.dart';
 import 'package:ultimate_solutions_task/utils/constant.dart';
 
 class ApiService {
   final Dio _dio = Dio();
 
   DeliveryLogin delivaryLogin=  DeliveryLogin();
-
   Future<DeliveryLogin> checkDeliveryLogin() async {
     try {
       var data = json.encode({
