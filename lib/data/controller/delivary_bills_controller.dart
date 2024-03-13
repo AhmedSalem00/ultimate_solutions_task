@@ -16,7 +16,8 @@ class DelivaryBillsController extends GetxController
   }
   final dioPackage.Dio _dio = dioPackage.Dio();
 
-
+  List<DeliveryBills> lst = [];
+  List<DeliveryBills> others = [];
   getData() async {
     change([], status: RxStatus.loading());
     try {
@@ -40,9 +41,19 @@ class DelivaryBillsController extends GetxController
         List<DeliveryBills> delivaryBils = [];
         responseData.forEach((item) {
           delivaryBils.add(DeliveryBills.fromJson(item));
+
         });
+
+        // delivaryBils[0].dLVRYSTATUSFLG
         if (delivaryBils.isNotEmpty) {
           change(delivaryBils, status: RxStatus.success());
+          // delivaryBils.forEach((element) {
+          //   if(element.dLVRYSTATUSFLG == "0"){
+          //     lst.add(element);
+          //   }else{
+          //     others.add(element);
+          //   }
+          // });
         }
         else {
           change([], status: RxStatus.empty());

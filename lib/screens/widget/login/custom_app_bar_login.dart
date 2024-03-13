@@ -6,24 +6,47 @@ class CustomAppBarLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Image.asset(
-          'assets/images/OnxRestaurant_Logo.png',
-          width: 170,
-          height: 74,
+        Padding(
+          padding: const EdgeInsets.only(top: 50, left: 26),
+          child: Image.asset(
+            'assets/images/OnxRestaurant_Logo.png',
+            width: 170,
+            height: 74,
+          ),
         ),
-        Expanded(
-          child: Stack(
-            children: [
-              Image.asset(
-                'assets/images/ic_circle.png',
+        Stack(
+          children: [
+            // Positioned(
+            //   child: Image.asset(
+            //     'assets/images/ic_circle.png',
+            //   ),
+            // ),
+            Container(
+              width: 121,
+              height: 127,
+              margin: EdgeInsets.zero,
+              decoration: const BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(254),
+                ),
               ),
-              // Top Image
-              Image.asset(
+            ),
+            // Top Image
+
+            Positioned(
+              top: 35,
+              right: 16,
+              bottom: 0,
+              child: Image.asset(
+                width: 27.5,
+                height: 27.5,
                 'assets/images/ic_language.png',
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );

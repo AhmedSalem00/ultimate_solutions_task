@@ -10,7 +10,6 @@ class OrderScreen extends StatelessWidget {
   OrderScreen({super.key});
 
   var controller = Get.put(DelivaryBillsController());
-  var controllers = Get.put(DeliveryBillsController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,27 +23,7 @@ class OrderScreen extends StatelessWidget {
               const SizedBox(height: 20),
               CustomSlideSwitch(),
               const SizedBox(height: 40),
-              controller.obx((state) => CustomOrderListWidget(lst: state ?? [], ),
-                  onEmpty: Padding(
-                    padding:
-                    EdgeInsets.symmetric(vertical: context.height * 0.3),
-                    child: const Center(child: Text("Data is Empty")),
-                  ),
-                  onError: (e) => Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: context.height * 0.3, horizontal: 20),
-                    child: Center(
-                      child: Text(
-                        "$e",
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                  onLoading: Padding(
-                    padding:
-                    EdgeInsets.symmetric(vertical: context.height * 0.3),
-                    child: const Center(child: CircularProgressIndicator()),
-                  )),
+
             ],
           ),
         ),

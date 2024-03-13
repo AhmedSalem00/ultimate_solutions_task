@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ultimate_solutions_task/data/repository/api.dart';
-import 'package:ultimate_solutions_task/screens/presntaion/splash/splash_screen.dart';
+import 'package:ultimate_solutions_task/screens/presntaion/login/login_screen.dart';
 
 void main() {
   // ApiService().getDeliveryStatusTypes();
@@ -15,11 +16,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return    const MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: LoginScreen(),
     );
   }
 }
-
-
